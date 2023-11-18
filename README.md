@@ -19,3 +19,7 @@ To run all tests for the project
 ```
 npm run test
 ```
+
+## HTML semantic
+
+This App is structured with semantic HTML elements to improve accessibility and SEO.
