@@ -1,11 +1,11 @@
 import { render } from '@testing-library/react';
 import Card from './index';
 import '@testing-library/jest-dom';
-import { book } from 'app/data/book';
+import { books } from 'app/data/books';
 
 describe('Card', () => {
   it('should render all content as expected', () => {
-    const { author, description, imagePath, title, isAvailable } = book;
+    const { author, description, imagePath, title, isAvailable } = books[0];
     const { getByTestId, queryByTestId } = render(
       <Card
         author={author}
