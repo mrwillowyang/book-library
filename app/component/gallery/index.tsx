@@ -1,7 +1,10 @@
-import { books } from 'app/data/books';
+import fetchData from 'app/utils/fetch-data';
 import Card from '../card';
+import { Book } from 'app/type/book';
 
-const Gallery = () => {
+const Gallery = async () => {
+  const books = await fetchData<Book[]>('http://localhost:4200/api/book');
+
   return (
     <section className="container mx-auto py-2">
       <div data-testid="gallery" className="flex flex-wrap -m-2">
