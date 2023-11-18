@@ -9,7 +9,7 @@ export default {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: './coverage/book-library',
   testMatch: [
-    '<rootDir>/src/**/__tests__/**/*.[jt]s?(x)',
-    '<rootDir>/src/**/*(*.)@(spec|test).[jt]s?(x)',
+    '<rootDir>/app/**/__tests__/**/*.[jt]s?(x)',
+    '<rootDir>/app/**/*(*.)@(spec|test).[jt]s?(x)',
   ],
 };
