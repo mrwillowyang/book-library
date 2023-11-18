@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import Nav from './navbar';
+import Nav from '.';
 import '@testing-library/jest-dom';
 import { pages } from 'app/data/pages';
 

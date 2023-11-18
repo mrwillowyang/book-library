@@ -1,4 +1,4 @@
-import Nav from '../component/navbar/navbar';
+import Nav from '../component/navbar';
 
 export function Form() {
   return (
