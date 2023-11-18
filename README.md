@@ -46,18 +46,19 @@ book-library/
 ├── public/                    # Static files
 │   ├── favicon.ico            # Favicon
 │   └── images/                # Images assets
-├── app/                       # Nextjs 13 latest. Support async React component
+├── app/                       # Nextjs 13 feature. Supports async React component
 │   ├── component/             # UI components
 │   │   ├── Navbar.ts
 │   │   └── ...
-│   ├── pages/                 # Web pages
-│   │   ├── _app.tsx           # html template
-│   │   ├── index.tsx
-│   │   ├── form.tsx
+│   ├── form/
+│   │   ├── form.tsx           # The form page. Nextjs 13 app base routing
 │   │   └── ...
 │   ├── api/                   # Rest API routes
 │   │   └── book/
 │   ├── data/                  # Client side data
+│   ├── page.tsx               # Index page of the app
+│   ├── global.css             # Global CSS file
+│   ├── layout.tsx             # Html template
 │   └── ...
 └── ...                        # Config files
 ```
