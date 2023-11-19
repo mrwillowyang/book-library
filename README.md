@@ -1,7 +1,7 @@
 # Book Library App
 
-![alt text](https://github.com/mrwillowyang/book-library/resources/screenshot_1.png?raw=true)
-![alt text](https://github.com/mrwillowyang/book-library/resources/screenshot_1.png?raw=true)
+![screenshot home page](https://github.com/mrwillowyang/book-library/blob/main/resources/screenshot_1.png?raw=true)
+![screenshot admin page](https://github.com/mrwillowyang/book-library/blob/main/resources/screenshot_2.png?raw=true)
 
 ## Before start
 
