@@ -10,10 +10,12 @@ import List, { Props } from 'app/component/list';
 import { useDeleteBook } from 'app/utils/delete-book';
 import { isEqual } from 'lodash';
 import { CardType } from 'app/type/card';
+import { useAddBook } from 'app/utils/add-book';
 
 export function Form() {
   const { data: books, isLoading } = useFetchBooks();
   const deleteBook = useDeleteBook();
+  const addBook = useAddBook();
   const cards = useMemo(() => booksToCards(books), [books]);
   const onItemAction = (id: number) => {
     /*
@@ -26,13 +28,23 @@ export function Form() {
     */
     deleteBook.mutate(id);
   };
+  const onAddBook = () => {
+    // TODO: remove testing code below
+    addBook.mutate({
+      author: '',
+      description: '',
+      imagePath: '',
+      isAvailable: true,
+      title: '',
+    });
+  };
 
   return (
     <div className="w-full">
       <Nav />
       <main className="max-w-screen-xl mx-auto py-2 px-3">
         <div className="py-5 flex justify-end">
-          <Button label="Add"></Button>
+          <Button label="Add" onClick={onAddBook}></Button>
         </div>
         {isLoading ? (
           <GalleryPlaceholder />

@@ -6,7 +6,7 @@ export async function PATCH(
   { params }: { params: { id: number } }
 ) {
   // delay 2 seconds to show the loading state on the page
-  await new Promise((resolve) => setTimeout(() => resolve(true), 2000));
+  // await new Promise((resolve) => setTimeout(() => resolve(true), 2000));
 
   await borrowBook(params.id);
   return NextResponse.json({ status: 'ok' });

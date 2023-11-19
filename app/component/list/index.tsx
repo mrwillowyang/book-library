@@ -28,7 +28,7 @@ const List = ({ cards, onItemAction }: Props) => {
   );
 
   return (
-    <section data-testid="list" className="flex flex-wrap">
+    <section data-testid="list">
       {Array.isArray(cards) &&
         cards.map(
           ({

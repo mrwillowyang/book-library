@@ -2,12 +2,12 @@ import { Book } from 'app/type/book';
 import { CardType } from 'app/type/card';
 
 export const booksToCards = (books: Book[] | undefined): CardType[] =>
-  books
+  Array.isArray(books)
     ? books.map(
         ({ author, description, id, imagePath, isAvailable, title }) => ({
-          title,
+          title: title || 'Unknown title',
           content: description,
-          footerText: `by ${author}`,
+          footerText: author ? `by ${author}` : 'Unknown author',
           id,
           imagePath,
           showButton: isAvailable,

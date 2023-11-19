@@ -6,3 +6,5 @@ export type Book = {
   imagePath: string;
   isAvailable: boolean;
 };
+
+export type NewBook = Omit<Book, 'id'>;

@@ -3,8 +3,8 @@
 import Image from 'next/image';
 import Button from '../button';
 import { CardType } from 'app/type/card';
-import DeleteIcon from '../icons/delete-icon';
 import Tag from '../tag';
+import DeleteIcon from '../icons/delete-icon';
 
 type Props = CardType & {
   onCardAction?: (id: number) => void;
@@ -26,7 +26,7 @@ const HorizontalCard = ({
   };
 
   return (
-    <div className="flex items-center border rounded-lg shadow border-gray-700 bg-gray-800 hover:bg-gray-700">
+    <div className="flex items-center border rounded-lg shadow border-gray-700 bg-gray-800 hover:bg-gray-700 w-full">
       <Image
         data-testid="image"
         className="object-cover h-auto w-48 rounded-s-lg"
@@ -36,7 +36,7 @@ const HorizontalCard = ({
         height="0"
         sizes="100vw"
       />
-      <article className="flex flex-col justify-between p-4 leading-normal">
+      <article className="flex flex-col justify-between p-4 leading-normal w-full">
         <div className="flex items-center space-x-4">
           <h5
             data-testid="title"
