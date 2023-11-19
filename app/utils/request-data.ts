@@ -1,6 +1,6 @@
 import { getUrl } from './get-url';
 
-type Method = 'GET' | 'PATCH';
+type Method = 'GET' | 'PATCH' | 'DELETE';
 
 export const requestData = <T>(
   url: string,
