@@ -76,4 +76,11 @@ Within it's parent component, the React Suspense is used to prevent the async co
 ## ToDo
 
 - Use a in memory db
+- Build the CRUD API for books
+- Build the admin page to manage books
 - Build a read more button on the book description section
+
+## Future Improvement
+
+- Add storybook
+- Implement design library
