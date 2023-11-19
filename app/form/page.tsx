@@ -4,15 +4,17 @@ import { useFetchBooks } from 'app/utils/use-fetch-books';
 import Nav from '../component/navbar';
 import GalleryPlaceholder from 'app/component/gallery/placeholder';
 import { booksToCards } from 'app/utils/books-to-cards';
-import { memo, useMemo } from 'react';
+import { memo, useMemo, useState } from 'react';
 import Button from 'app/component/button';
 import List, { Props } from 'app/component/list';
 import { useDeleteBook } from 'app/utils/delete-book';
 import { isEqual } from 'lodash';
 import { CardType } from 'app/type/card';
 import { useAddBook } from 'app/utils/add-book';
+import Modal from 'app/component/modal';
 
 export function Form() {
+  const [modalOpen, setModalOpen] = useState(false);
   const { data: books, isLoading } = useFetchBooks();
   const deleteBook = useDeleteBook();
   const addBook = useAddBook();
@@ -28,7 +30,16 @@ export function Form() {
     */
     deleteBook.mutate(id);
   };
+
   const onAddBook = () => {
+    setModalOpen(true);
+  };
+
+  const onModalClose = () => {
+    setModalOpen(false);
+  };
+
+  const onModalConfirm = () => {
     // TODO: remove testing code below
     addBook.mutate({
       author: '',
@@ -40,19 +51,29 @@ export function Form() {
   };
 
   return (
-    <div className="w-full">
-      <Nav />
-      <main className="max-w-screen-xl mx-auto py-2 px-3">
-        <div className="py-5 flex justify-end">
-          <Button label="Add" onClick={onAddBook}></Button>
-        </div>
-        {isLoading ? (
-          <GalleryPlaceholder />
-        ) : (
-          <MemoList cards={cards} onItemAction={onItemAction}></MemoList>
-        )}
-      </main>
-    </div>
+    <>
+      <div className="w-full">
+        <Nav />
+        <main className="max-w-screen-xl mx-auto py-2 px-3">
+          <div className="py-5 flex justify-end">
+            <Button label="Add" onClick={onAddBook} className="w-24"></Button>
+          </div>
+          {isLoading ? (
+            <GalleryPlaceholder />
+          ) : (
+            <MemoList cards={cards} onItemAction={onItemAction}></MemoList>
+          )}
+          {modalOpen && (
+            <Modal
+              content={<div></div>}
+              title=""
+              onClose={onModalClose}
+              onConfirm={onModalConfirm}
+            />
+          )}
+        </main>
+      </div>
+    </>
   );
 }
 

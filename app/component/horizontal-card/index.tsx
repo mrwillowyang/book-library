@@ -64,6 +64,7 @@ const HorizontalCard = ({
             label="Delete"
             variant="danger"
             isLoading={isLoading}
+            className="w-24"
             icon={
               <span className="mr-1">
                 <DeleteIcon />

@@ -63,6 +63,7 @@ const Card = ({
             <Button
               label="Borrow"
               isLoading={isLoading}
+              className="w-24"
               icon={
                 <span className="mr-1">
                   <BookIcon />
