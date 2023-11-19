@@ -83,6 +83,16 @@ To improve the read performance, we can replicate the db and use a load balancer
 
 To improve the write performance, we can add a message queue like Kafka to avoid loading the DB.
 
+# React Query library
+
+This application uses react-query for client side data fetching.
+
+### Pros
+
+- Automated Caching and Background Updates
+- Reduction in Boilerplate Code
+- Built-In Loading and Error States
+
 ## ToDo
 
 - Use a in memory db
@@ -92,5 +102,6 @@ To improve the write performance, we can add a message queue like Kafka to avoid
 
 ## Future Improvement
 
-- Add storybook
-- Implement design library
+1. Add storybook
+2. Implement design library
+3. Use a hosted service provider like Sentry or Datadog for error logging and monitoring

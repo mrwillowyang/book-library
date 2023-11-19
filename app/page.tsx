@@ -1,3 +1,5 @@
+'use client';
+
 import { Suspense } from 'react';
 import Gallery from './component/gallery';
 import Navbar from './component/navbar';

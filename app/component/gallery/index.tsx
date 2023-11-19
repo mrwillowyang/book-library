@@ -1,29 +1,31 @@
-import fetchData from 'app/utils/fetch-data';
+'use client';
+
 import Card from '../card';
-import { Book } from 'app/type/book';
+import { useFetchBooks } from 'app/utils/use-fetch-books';
 
 const Gallery = async () => {
-  const books = await fetchData<Book[]>('http://localhost:4200/api/book');
+  const { data: books } = useFetchBooks();
 
   return (
     <section className="container mx-auto py-2">
       <div data-testid="gallery" className="flex flex-wrap -m-2">
-        {books.map(
-          ({ title, author, description, id, imagePath, isAvailable }) => (
-            <div key={id} className="flex w-1/4 flex-wrap">
-              <div className="w-full p-3">
-                <Card
-                  key={id}
-                  title={title}
-                  description={description}
-                  author={author}
-                  imagePath={imagePath}
-                  isAvailable={isAvailable}
-                />
+        {Array.isArray(books) &&
+          books.map(
+            ({ title, author, description, id, imagePath, isAvailable }) => (
+              <div key={id} className="flex w-1/4 flex-wrap">
+                <div className="w-full p-3">
+                  <Card
+                    key={id}
+                    title={title}
+                    description={description}
+                    author={author}
+                    imagePath={imagePath}
+                    isAvailable={isAvailable}
+                  />
+                </div>
               </div>
-            </div>
-          )
-        )}
+            )
+          )}
       </div>
     </section>
   );
