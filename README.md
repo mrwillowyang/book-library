@@ -1,5 +1,9 @@
 # Book Library App
 
+## Before start
+
+This application rely on a `.env` file to run. You can do so by renaming the `.env.example` file to `.env`.
+
 ## How to run
 
 First, run the development server:
@@ -97,18 +101,32 @@ This application uses react-query for client side data fetching.
 
 - Cause unnecessary re-render in some scenarios which required memoisation and deep compare to improve performance.
 
-# Client side performance optimisation
+## Resilience pattern
+
+### HTTP Caching
+
+Nextjs supports HTTP caching by default, data requests that use fetch are cached. It can be configured by modifying the HTTP header when sending the request.
+
+### Rate limit
+
+This application is implementing rate limit function to protect the API. While this approach works on a small application, it can consume a large amount of CUP when the number of incoming requests are high.
+
+A better solution is using rate limit service provided by the cloud platform. For example, the AWS API Gateway supports throttling limit.
+
+### Client side performance optimisation
 
 Memories the Card component inside the Gallery to avoid re-rendering all cards when clicking on the button of a card.
 
 Implement deep compare on the Gallery component to avoid re-render causing by the react-query mutation function
 
-## ToDo
+### Nextjs supports/Webpack features
 
-- Use a in memory db
-- Build the CRUD API for books
-- Build the admin page to manage books
-- Build a read more button on the book description section
+- Tree shaking: remove unused code in the application and it's external library.
+- Minimize bundle size: it removes unnecessary white spaces, new lines, unreachable code, etc from the code to reduce the size of the files
+- Compress bundle file: use GZip to compress the bundle files in the web server before sending to the client
+- SSR: rendering React components on the server. It sends a fully rendered page to the client, so the user sees a complete page immediately.
+- React Streaming: components can be sent to the client as soon as they are ready, instead of waiting for the entire page to be rendered.
+- Client-side caching: The build-in React-Query cache helps memorising data that is fetched once. This means rendering components and transition between pages does not need to fetch the data again until the local cache is expired. It also help when optimistically update the local cache after mutating the server data. For example, after successfully adding a new book, the local cache is updated optimistically. The new book is showing on the page without needing to send another API request to fetch all books.
 
 ## Future Improvement
 
