@@ -4,6 +4,7 @@ import Image from 'next/image';
 import BookIcon from '../icons/book-icon';
 import Button from '../button';
 import { CardType } from 'app/type/card';
+import Tag from '../tag';
 
 type Props = CardType & {
   onCardAction?: (id: number) => void;
@@ -16,8 +17,9 @@ const Card = ({
   content,
   footerText,
   imagePath,
-  showTag,
+  showButton,
   onCardAction,
+  status,
   isLoading = false,
 }: Props) => {
   const onBorrowButtonClick = () => {
@@ -52,26 +54,20 @@ const Card = ({
           {footerText}
         </p>
         <div className="flex items-center justify-between">
-          {showTag ? (
-            <span
-              data-testid="available"
-              className="bg-green-200 rounded-full px-3 py-1 my-1 text-sm font-semibold text-gray-700"
-            >
-              Available
-            </span>
+          {status === 'Available' ? (
+            <Tag label="Available" />
           ) : (
-            <span
-              data-testid="borrowed"
-              className="bg-yellow-200 rounded-full px-3 py-1 my-1 text-sm font-semibold text-gray-700"
-            >
-              Borrowed
-            </span>
+            <Tag label="Borrowed" variant="warning" />
           )}
-          {showTag ? (
+          {showButton ? (
             <Button
               label="Borrow"
               isLoading={isLoading}
-              icon={<BookIcon className="mr-1 h-5 w-5" />}
+              icon={
+                <span className="mr-1">
+                  <BookIcon />
+                </span>
+              }
               onClick={onBorrowButtonClick}
             />
           ) : (

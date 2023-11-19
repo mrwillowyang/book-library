@@ -28,25 +28,36 @@ const Gallery = ({ cards, onItemAction }: Props) => {
   );
 
   return (
-    <section data-testid="gallery" className="flex flex-wrap -m-2 ">
+    <section data-testid="gallery" className="flex flex-wrap -m-2">
       {Array.isArray(cards) &&
-        cards.map(({ title, footerText, content, id, imagePath, showTag }) => (
-          <div key={id} className="flex w-1/4 flex-wrap">
-            <div className="w-full p-3">
-              <MemoCard
-                key={id}
-                id={id}
-                title={title}
-                content={content}
-                footerText={footerText}
-                imagePath={imagePath}
-                showTag={showTag}
-                onCardAction={onCardAction}
-                isLoading={Boolean(loadingStates[id])}
-              />
+        cards.map(
+          ({
+            title,
+            footerText,
+            content,
+            id,
+            imagePath,
+            showButton,
+            status,
+          }) => (
+            <div key={id} className="flex w-1/4 flex-wrap">
+              <div className="w-full p-3">
+                <MemoCard
+                  key={id}
+                  id={id}
+                  title={title}
+                  content={content}
+                  footerText={footerText}
+                  imagePath={imagePath}
+                  showButton={showButton}
+                  status={status}
+                  onCardAction={onCardAction}
+                  isLoading={Boolean(loadingStates[id])}
+                />
+              </div>
             </div>
-          </div>
-        ))}
+          )
+        )}
     </section>
   );
 };

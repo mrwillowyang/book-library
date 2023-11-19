@@ -10,7 +10,8 @@ export const booksToCards = (books: Book[] | undefined): CardType[] =>
           footerText: `by ${author}`,
           id,
           imagePath,
-          showTag: isAvailable,
+          showButton: isAvailable,
+          status: isAvailable ? 'Available' : 'Borrowed',
         })
       )
     : [];

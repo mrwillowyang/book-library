@@ -12,7 +12,8 @@ describe('Card', () => {
         content={description}
         imagePath={imagePath}
         title={title}
-        showTag={isAvailable}
+        showButton={isAvailable}
+        status={isAvailable ? 'Available' : 'Borrowed'}
         id={id}
       />
     );
