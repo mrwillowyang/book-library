@@ -73,6 +73,16 @@ This application leverages the fetchData function for early data retrieval, init
 
 Within it's parent component, the React Suspense is used to prevent the async component from blocking the UI's responsiveness. Instead, it displays a fallback loading component during data fetching. This strategy significantly enhances the UI's loading speed, ensuring a smoother and more efficient user experience and improves the First Contentful Paint (FCP) as well as the Time to Interactive (TTI) metric.
 
+# Database
+
+Use SQLite as a in memory SQL db to serve the backend API. The downside of this solution is the data get lost when the server stops running.
+
+An alternative solution is using a stand alone SQL DB like Postgres.
+
+To improve the read performance, we can replicate the db and use a load balancer to distributes the traffic evenly. Adding a cache layer (such as Redis) to cache the popular data can further optimise the read performance.
+
+To improve the write performance, we can add a message queue like Kafka to avoid loading the DB.
+
 ## ToDo
 
 - Use a in memory db
