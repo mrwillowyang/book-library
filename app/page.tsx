@@ -43,23 +43,20 @@ export function Index() {
   };
 
   return (
-    <div className="w-full">
-      <Navbar />
-      <main className="max-w-screen-xl mx-auto py-5 px-3">
-        <div className="py-5 flex justify-end">
-          <Button
-            label="Sort By Title"
-            onClick={onSort}
-            icon={getIcon(sortByTitle)}
-          ></Button>
-        </div>
-        {isLoading ? (
-          <GalleryPlaceholder />
-        ) : (
-          <MemoGallery cards={cards} onItemAction={onItemAction} />
-        )}
-      </main>
-    </div>
+    <main className="max-w-screen-xl mx-auto py-5 px-3">
+      <div className="py-5 flex justify-end">
+        <Button
+          label="Sort By Title"
+          onClick={onSort}
+          icon={getIcon(sortByTitle)}
+        ></Button>
+      </div>
+      {isLoading ? (
+        <GalleryPlaceholder />
+      ) : (
+        <MemoGallery cards={cards} onItemAction={onItemAction} />
+      )}
+    </main>
   );
 }
 

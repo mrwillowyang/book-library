@@ -1,5 +1,8 @@
 # Book Library App
 
+![alt text](https://github.com/mrwillowyang/book-library/resources/screenshot_1.png?raw=true)
+![alt text](https://github.com/mrwillowyang/book-library/resources/screenshot_1.png?raw=true)
+
 ## Before start
 
 This application rely on a `.env` file to run. You can do so by renaming the `.env.example` file to `.env`.

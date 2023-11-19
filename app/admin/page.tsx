@@ -46,33 +46,25 @@ export function AdminPage() {
   };
 
   return (
-    <>
-      <div className="w-full">
-        <Nav />
-        <main className="max-w-screen-xl mx-auto py-2 px-3">
-          <div className="py-5 flex justify-end">
-            <Button label="Add" onClick={onAddBook} className="w-24"></Button>
-          </div>
-          {isLoading ? (
-            <GalleryPlaceholder />
-          ) : (
-            <MemoList cards={cards} onItemAction={onItemAction}></MemoList>
-          )}
-          {modalOpen && (
-            <Modal
-              content={
-                <AddBookForm
-                  onClose={onModalClose}
-                  onConfirm={onModalConfirm}
-                />
-              }
-              title="Add Book"
-              onClose={onModalClose}
-            />
-          )}
-        </main>
+    <main className="max-w-screen-xl mx-auto py-2 px-3">
+      <div className="py-5 flex justify-end">
+        <Button label="Add" onClick={onAddBook} className="w-24"></Button>
       </div>
-    </>
+      {isLoading ? (
+        <GalleryPlaceholder />
+      ) : (
+        <MemoList cards={cards} onItemAction={onItemAction}></MemoList>
+      )}
+      {modalOpen && (
+        <Modal
+          content={
+            <AddBookForm onClose={onModalClose} onConfirm={onModalConfirm} />
+          }
+          title="Add Book"
+          onClose={onModalClose}
+        />
+      )}
+    </main>
   );
 }
 
