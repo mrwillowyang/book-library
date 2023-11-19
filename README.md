@@ -6,7 +6,13 @@ This application rely on a `.env` file to run. You can do so by renaming the `.e
 
 ## How to run
 
-First, run the development server:
+First, install required packages
+
+```bash
+npm install
+```
+
+Run the development server:
 
 ```bash
 npm start
@@ -14,13 +20,13 @@ npm start
 
 To build the application for production usage
 
-```
+```bash
 npm run build
 ```
 
 To run all tests for the project
 
-```
+```bash
 npm run test
 ```
 
@@ -130,6 +136,6 @@ Implement deep compare on the Gallery component to avoid re-render causing by th
 
 ## Future Improvement
 
-1. Add storybook
-2. Implement design library
+1. Since all the component is built in a highly reusable fashion, having storybook installed in the project can be a good idea to show case the components easily.
+2. Implement a user login feature to secure the admin page. This feature is not implemented due to time constrain.
 3. Use a hosted service provider like Sentry or Datadog for error logging and monitoring
