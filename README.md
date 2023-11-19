@@ -93,6 +93,10 @@ This application uses react-query for client side data fetching.
 - Reduction in Boilerplate Code
 - Built-In Loading and Error States
 
+# Client side performance optimisation
+
+Memories the Card component inside the Gallery to avoid re-rendering all cards when clicking on the button of a card.
+
 ## ToDo
 
 - Use a in memory db

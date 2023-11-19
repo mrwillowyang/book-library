@@ -1,15 +1,17 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import Card from '../card';
 import { CardType } from 'app/type/card';
 
 export type Props = {
-  cards: CardType[] | undefined;
+  cards: CardType[];
   onItemAction?: (id: number) => void;
 };
 
-const BookGallery = ({ cards, onItemAction }: Props) => {
+const MemoCard = memo(Card);
+
+const Gallery = ({ cards, onItemAction }: Props) => {
   const [loadingStates, setLoadingStates] = useState<Record<string, boolean>>(
     {}
   );
@@ -30,10 +32,10 @@ const BookGallery = ({ cards, onItemAction }: Props) => {
       <div data-testid="gallery" className="flex flex-wrap -m-2">
         {Array.isArray(cards) &&
           cards.map(
-            ({ title, content, footerText, id, imagePath, showTag }) => (
+            ({ title, footerText, content, id, imagePath, showTag }) => (
               <div key={id} className="flex w-1/4 flex-wrap">
                 <div className="w-full p-3">
-                  <Card
+                  <MemoCard
                     key={id}
                     id={id}
                     title={title}
@@ -53,4 +55,4 @@ const BookGallery = ({ cards, onItemAction }: Props) => {
   );
 };
 
-export default BookGallery;
+export default Gallery;
