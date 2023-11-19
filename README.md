@@ -63,13 +63,19 @@ book-library/
 │   ├── component/             # UI components
 │   │   ├── Navbar.ts
 │   │   └── ...
-│   ├── form/
-│   │   ├── form.tsx           # The form page. Nextjs 13 app base routing
+│   ├── admin/
+│   │   ├── page.tsx           # The admin page. Nextjs 13 app base routing
 │   │   └── ...
 │   ├── api/                   # Rest API routes
 │   │   └── book/
+│   │       ├── route.ts       # API route: /api/book
+│   │       └── [id]/
+│   │           └── borrow/
+│   │               └── route.ts    # API route: /api/book/[id]/borrow
 │   ├── data/                  # Client side data
-│   ├── page.tsx               # Index page of the app
+│   ├── db/                    # Database layer that use SQL to query data
+│   ├── type/                  # TS types that are shared with multiple components
+│   ├── page.tsx               # Index page
 │   ├── global.css             # Global CSS file
 │   ├── layout.tsx             # Html template
 │   └── ...
@@ -128,17 +134,24 @@ Memories the Card component inside the Gallery to avoid re-rendering all cards w
 
 Implement deep compare on the Gallery component to avoid re-render causing by the react-query mutation function
 
-### Nextjs supports/Webpack features
+### Nextjs/Webpack features
 
 - Tree shaking: remove unused code in the application and it's external library.
+
 - Minimize bundle size: it removes unnecessary white spaces, new lines, unreachable code, etc from the code to reduce the size of the files
+
 - Compress bundle file: use GZip to compress the bundle files in the web server before sending to the client
 - SSR: rendering React components on the server. It sends a fully rendered page to the client, so the user sees a complete page immediately.
+
 - React Streaming: components can be sent to the client as soon as they are ready, instead of waiting for the entire page to be rendered.
+
 - Client-side caching: The build-in React-Query cache helps memorising data that is fetched once. This means rendering components and transition between pages does not need to fetch the data again until the local cache is expired. It also help when optimistically update the local cache after mutating the server data. For example, after successfully adding a new book, the local cache is updated optimistically. The new book is showing on the page without needing to send another API request to fetch all books.
+
+- Image optimisation: Use the Nexjjs build in `next/image` component to optimise the image when building the app in production mode.
 
 ## Future Improvement
 
 1. Since all the component is built in a highly reusable fashion, having storybook installed in the project can be a good idea to show case the components easily.
 2. Implement a user login feature to secure the admin page. This feature is not implemented due to time constrain.
 3. Use a hosted service provider like Sentry or Datadog for error logging and monitoring
+4. Use React Virtualized to improvement by only showing cards that are enough for the user to see. Load more cards dynamically as the user scroll down/up. The backend API will need to be updated support pagination in order to implement this feature.
