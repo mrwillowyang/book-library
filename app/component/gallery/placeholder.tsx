@@ -2,7 +2,7 @@ import CardPlaceholder from '../card/placeholder';
 
 export default function GalleryPlaceholder() {
   return (
-    <section className="container mx-auto py-2">
+    <section>
       <div data-testid="gallery" className="flex flex-wrap -m-2">
         <div className="flex w-1/4 flex-wrap">
           <div className="w-full p-3">

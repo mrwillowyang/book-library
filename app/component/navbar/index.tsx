@@ -9,7 +9,7 @@ export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="bg-gray-800">
+    <nav className="bg-gray-800 sticky top-0 overflow-hidden">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <div className="flex items-center space-x-3">
           <Image
@@ -36,7 +36,7 @@ export function Navbar() {
                 <Link
                   role="page"
                   href={item.href}
-                  className={`block py-2 px-3 hover:text-blue-500 ${
+                  className={`block py-2 hover:text-blue-500 ${
                     pathname === item.href ? 'text-blue-500' : 'text-white'
                   }`}
                 >

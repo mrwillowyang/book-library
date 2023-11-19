@@ -32,7 +32,7 @@ export function Index() {
   return (
     <div className="w-full">
       <Navbar />
-      <main className="p-10">
+      <main className="max-w-screen-xl mx-auto py-5 px-3">
         {isLoading ? (
           <GalleryPlaceholder />
         ) : (
