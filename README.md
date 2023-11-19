@@ -93,9 +93,15 @@ This application uses react-query for client side data fetching.
 - Reduction in Boilerplate Code
 - Built-In Loading and Error States
 
+### Cons
+
+- Cause unnecessary re-render in some scenarios which required memoisation and deep compare to improve performance.
+
 # Client side performance optimisation
 
 Memories the Card component inside the Gallery to avoid re-rendering all cards when clicking on the button of a card.
+
+Implement deep compare on the Gallery component to avoid re-render causing by the react-query mutation function
 
 ## ToDo
 

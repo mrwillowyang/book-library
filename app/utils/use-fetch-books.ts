@@ -4,7 +4,6 @@ import { useQuery } from '@tanstack/react-query';
 
 const fetchBook = async () => {
   const books = await requestData<Book[]>('/api/book', 'GET');
-  console.log('books', books);
   return books || [];
 };
 
