@@ -5,7 +5,7 @@ export const getBooks = async (): Promise<Book[]> =>
   new Promise((resolve, reject) => {
     db.serialize(() => {
       db.all(
-        'SELECT id, title, description, author, imagePath, isAvailable FROM book',
+        'SELECT id, title, description, author, imagePath, isAvailable FROM book ORDER BY id DESC',
         (err, row: Book[]) => {
           if (err) {
             reject(err);

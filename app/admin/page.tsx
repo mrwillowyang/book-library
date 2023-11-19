@@ -12,8 +12,10 @@ import { isEqual } from 'lodash';
 import { CardType } from 'app/type/card';
 import { useAddBook } from 'app/utils/add-book';
 import Modal from 'app/component/modal';
+import AddBookForm from 'app/component/add-book-form';
+import { NewBook } from 'app/type/book';
 
-export function Form() {
+export function AdminPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const { data: books, isLoading } = useFetchBooks();
   const deleteBook = useDeleteBook();
@@ -39,15 +41,8 @@ export function Form() {
     setModalOpen(false);
   };
 
-  const onModalConfirm = () => {
-    // TODO: remove testing code below
-    addBook.mutate({
-      author: '',
-      description: '',
-      imagePath: '',
-      isAvailable: true,
-      title: '',
-    });
+  const onModalConfirm = (book: NewBook) => {
+    addBook.mutate(book);
   };
 
   return (
@@ -65,10 +60,14 @@ export function Form() {
           )}
           {modalOpen && (
             <Modal
-              content={<div></div>}
-              title=""
+              content={
+                <AddBookForm
+                  onClose={onModalClose}
+                  onConfirm={onModalConfirm}
+                />
+              }
+              title="Add Book"
               onClose={onModalClose}
-              onConfirm={onModalConfirm}
             />
           )}
         </main>
@@ -77,7 +76,7 @@ export function Form() {
   );
 }
 
-export default Form;
+export default AdminPage;
 
 function arePropsEqual(prevProps: Props, nextProps: Props) {
   function areEqual(prevData: CardType[], newData: CardType[]) {

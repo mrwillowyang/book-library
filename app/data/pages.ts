@@ -6,7 +6,7 @@ export const pages = [
   },
   {
     id: '2',
-    text: 'Form',
-    href: '/form',
+    text: 'Admin',
+    href: '/admin',
   },
 ];
