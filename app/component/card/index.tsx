@@ -1,21 +1,29 @@
+'use client';
+
 import Image from 'next/image';
 import BookIcon from '../icons/book-icon';
+import Button from '../button';
+import { CardType } from 'app/type/card';
 
-type CardProps = {
-  title: string;
-  description: string;
-  author: string;
-  imagePath: string;
-  isAvailable: boolean;
+type Props = CardType & {
+  onCardAction?: (id: number) => void;
+  isLoading?: boolean;
 };
 
 const Card = ({
+  id,
   title,
-  description,
-  author,
+  content,
+  footerText,
   imagePath,
-  isAvailable,
-}: CardProps) => {
+  showTag,
+  onCardAction,
+  isLoading = false,
+}: Props) => {
+  const onBorrowButtonClick = () => {
+    onCardAction?.(id);
+  };
+
   return (
     <div className="max-w-xs border rounded-lg shadow bg-gray-800 border-gray-700">
       <Image
@@ -35,16 +43,16 @@ const Card = ({
           {title}
         </h5>
         <p
-          data-testid="description"
+          data-testid="content"
           className="mb-3 font-normal text-gray-400 line-clamp-2"
         >
-          {description}
+          {content}
         </p>
-        <p data-testid="author" className="mb-3 text-sm">
-          by {author}
+        <p data-testid="footerText" className="mb-3 text-sm">
+          {footerText}
         </p>
         <div className="flex items-center justify-between">
-          {isAvailable ? (
+          {showTag ? (
             <span
               data-testid="available"
               className="bg-green-200 rounded-full px-3 py-1 my-1 text-sm font-semibold text-gray-700"
@@ -59,14 +67,15 @@ const Card = ({
               Borrowed
             </span>
           )}
-          {isAvailable && (
-            <button
-              data-testid="borrow-button"
-              className="py-2 px-4 rounded inline-flex items-center bg-blue-500 hover:bg-blue-600 focus:ring-blue-700 text-sm"
-            >
-              <BookIcon className="mr-1 h-5 w-5" />
-              <span>Borrow</span>
-            </button>
+          {showTag ? (
+            <Button
+              label="Borrow"
+              isLoading={isLoading}
+              icon={<BookIcon className="mr-1 h-5 w-5" />}
+              onClick={onBorrowButtonClick}
+            />
+          ) : (
+            <></>
           )}
         </div>
       </article>

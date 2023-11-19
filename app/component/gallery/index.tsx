@@ -16,11 +16,12 @@ const Gallery = async () => {
                 <div className="w-full p-3">
                   <Card
                     key={id}
+                    id={id}
                     title={title}
-                    description={description}
-                    author={author}
+                    content={description}
+                    footerText={`by ${author}`}
                     imagePath={imagePath}
-                    isAvailable={isAvailable}
+                    showTag={isAvailable}
                   />
                 </div>
               </div>
