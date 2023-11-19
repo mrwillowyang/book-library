@@ -5,15 +5,25 @@ import GalleryPlaceholder from './component/gallery/placeholder';
 import Gallery, { Props } from './component/gallery';
 import Navbar from './component/navbar';
 import { booksToCards } from './utils/books-to-cards';
-import { memo, useCallback, useMemo } from 'react';
+import { ReactNode, memo, useCallback, useMemo, useState } from 'react';
 import { useBorrowBook } from './utils/borrow-book';
 import isEqual from 'lodash/isEqual';
 import { CardType } from './type/card';
+import Button from './component/button';
+import RightIcon from './component/icons/right-icon';
+import UpIcon from './component/icons/up-icon';
+import DownIcon from './component/icons/down-icon';
 
 export function Index() {
   const { data: books, isLoading } = useFetchBooks();
+  const [sortByTitle, setSortByTitle] = useState<'up' | 'down' | undefined>(
+    undefined
+  );
   const borrowBook = useBorrowBook();
-  const cards = useMemo(() => booksToCards(books), [books]);
+  const cards = useMemo(
+    () => booksToCards(books, sortByTitle),
+    [books, sortByTitle]
+  );
   const onItemAction = useCallback(
     (id: number) => {
       /*
@@ -28,11 +38,21 @@ export function Index() {
     },
     [borrowBook]
   );
+  const onSort = () => {
+    setSortByTitle((state) => (state === 'down' ? 'up' : 'down'));
+  };
 
   return (
     <div className="w-full">
       <Navbar />
       <main className="max-w-screen-xl mx-auto py-5 px-3">
+        <div className="py-5 flex justify-end">
+          <Button
+            label="Sort By Title"
+            onClick={onSort}
+            icon={getIcon(sortByTitle)}
+          ></Button>
+        </div>
         {isLoading ? (
           <GalleryPlaceholder />
         ) : (
@@ -43,7 +63,16 @@ export function Index() {
   );
 }
 
-export default Index;
+function getIcon(sortByTitle: 'up' | 'down' | undefined): ReactNode {
+  switch (sortByTitle) {
+    case 'up':
+      return <UpIcon />;
+    case 'down':
+      return <DownIcon />;
+    default:
+      return <RightIcon />;
+  }
+}
 
 function arePropsEqual(prevProps: Props, nextProps: Props) {
   function areEqual(prevData: CardType[], newData: CardType[]) {
@@ -54,3 +83,5 @@ function arePropsEqual(prevProps: Props, nextProps: Props) {
 }
 
 const MemoGallery = memo(Gallery, arePropsEqual);
+
+export default Index;
