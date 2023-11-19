@@ -1,27 +1,48 @@
 'use client';
 
+import { useCallback, useState } from 'react';
 import Card from '../card';
-import { useFetchBooks } from 'app/utils/use-fetch-books';
+import { CardType } from 'app/type/card';
 
-const Gallery = async () => {
-  const { data: books } = useFetchBooks();
+export type Props = {
+  cards: CardType[] | undefined;
+  onItemAction?: (id: number) => void;
+};
+
+const BookGallery = ({ cards, onItemAction }: Props) => {
+  const [loadingStates, setLoadingStates] = useState<Record<string, boolean>>(
+    {}
+  );
+
+  const onCardAction = useCallback(
+    (id: number) => {
+      onItemAction?.(id);
+      setLoadingStates((state) => ({
+        ...state,
+        [id]: true,
+      }));
+    },
+    [onItemAction]
+  );
 
   return (
     <section className="container mx-auto py-2">
       <div data-testid="gallery" className="flex flex-wrap -m-2">
-        {Array.isArray(books) &&
-          books.map(
-            ({ title, author, description, id, imagePath, isAvailable }) => (
+        {Array.isArray(cards) &&
+          cards.map(
+            ({ title, content, footerText, id, imagePath, showTag }) => (
               <div key={id} className="flex w-1/4 flex-wrap">
                 <div className="w-full p-3">
                   <Card
                     key={id}
                     id={id}
                     title={title}
-                    content={description}
-                    footerText={`by ${author}`}
+                    content={content}
+                    footerText={footerText}
                     imagePath={imagePath}
-                    showTag={isAvailable}
+                    showTag={showTag}
+                    onCardAction={onCardAction}
+                    isLoading={Boolean(loadingStates[id])}
                   />
                 </div>
               </div>
@@ -32,4 +53,4 @@ const Gallery = async () => {
   );
 };
 
-export default Gallery;
+export default BookGallery;

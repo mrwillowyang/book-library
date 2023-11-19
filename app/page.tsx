@@ -1,19 +1,24 @@
 'use client';
 
-import { Suspense } from 'react';
+import { useFetchBooks } from './utils/use-fetch-books';
+import GalleryPlaceholder from './component/gallery/placeholder';
 import Gallery from './component/gallery';
 import Navbar from './component/navbar';
-import GalleryPlaceholder from './component/gallery/placeholder';
+import { useMemo } from 'react';
+import { booksToCards } from './utils/books-to-cards';
 
-export default async function Index() {
+export function Index() {
+  const { data: books, isLoading } = useFetchBooks();
+  const cards = useMemo(() => booksToCards(books), [books]);
+
   return (
-    <main className="w-full">
+    <div className="w-full">
       <Navbar />
-      <section className="container max-w-screen-xl mx-auto px-4 py-5">
-        <Suspense fallback={<GalleryPlaceholder />}>
-          <Gallery />
-        </Suspense>
-      </section>
-    </main>
+      <main className="p-10">
+        {isLoading ? <GalleryPlaceholder /> : <Gallery cards={cards} />}
+      </main>
+    </div>
   );
 }
+
+export default Index;
